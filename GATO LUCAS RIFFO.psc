@@ -1,11 +1,17 @@
 Algoritmo GATO 
 	Escribir "*** Bienvenido ***"
 	Escribir "Elige quien empieza"
-	Escribir "[1] para Tu [2] para Computadora"
-	Leer empieza
+	
+	Repetir
+		Escribir "[1] para Tu [2] para Computadora [3] para Salir"
+		Leer empieza
+		Si empieza <> 1 o empieza <> 2 o empieza <> 3
+			Escribir ""
+		FinSi
+	Hasta Que empieza == 1 o empieza == 2 o empieza == 3
+	
 	
 	Dimension posicion[9]
-	
 	posicion[1] = "1"
 	posicion[2] = "2"
 	posicion[3] = "3"
@@ -16,13 +22,12 @@ Algoritmo GATO
 	posicion[8] = "8"
 	posicion[9] = "9"
 	
-	
+	Si empieza <> 3
 	Escribir "Selecciona una casilla"
 	Escribir ""
-	
-	
+	Fin si
 	ganador = 0
-	
+	si empieza ==2 o empieza == 1
 	Mientras ganador == 0 Hacer
 		
 		Si empieza == 2 Entonces
@@ -70,25 +75,110 @@ Algoritmo GATO
 		
 		// INTERFAZ (TABLERO)
 		
-		Si posicion1=="O" y posicion2 =="O" y posicion3 =="O" Entonces
+		//JUGADAS GANADORAS (JUGADOR)
+		Si posicion[1]=="O" y posicion[2] =="O" y posicion[3] =="O" Entonces
 			ganador = ganador + 1
 			ganadorreal = "Jugador"
 		Fin Si
 		
+		Si posicion[4]=="O" y posicion[5] =="O" y posicion[6] =="O" Entonces
+			ganador = ganador + 1
+			ganadorreal = "Jugador"
+		Fin Si
 		
+		Si posicion[7]=="O" y posicion[8] =="O" y posicion[9] =="O" Entonces
+			ganador = ganador + 1
+			ganadorreal = "Jugador"
+		Fin Si
+		
+		Si posicion[1]=="O" y posicion[5] =="O" y posicion[9] =="O" Entonces
+			ganador = ganador + 1
+			ganadorreal = "Jugador"
+		Fin Si
+		
+		Si posicion[7]=="O" y posicion[5] =="O" y posicion[3] =="O" Entonces
+			ganador = ganador + 1
+			ganadorreal = "Jugador"
+		Fin Si
+		
+		Si posicion[1]=="O" y posicion[4] =="O" y posicion[7] =="O" Entonces
+			ganador = ganador + 1
+			ganadorreal = "Jugador"
+		Fin Si
+		
+		Si posicion[2]=="O" y posicion[5] =="O" y posicion[8] =="O" Entonces
+			ganador = ganador + 1
+			ganadorreal = "Jugador"
+		Fin Si
+		
+		Si posicion[3]=="O" y posicion[6] =="O" y posicion[9] =="O" Entonces
+			ganador = ganador + 1
+			ganadorreal = "Jugador"
+		Fin Si
+		//JUGADAS GANADORAS (JUGADOR) TERMINAL
 		Escribir " ", posicion[1], " | ", posicion[2], " | ", posicion[3], " "
 		Escribir "-------------"
 		Escribir " ", posicion[4], " | ", posicion[5], " | ", posicion[6], " "
 		Escribir "-------------"
 		Escribir " ", posicion[7], " | ", posicion[8], " | ", posicion[9], " "
 		
-		Si posicion1=="X" y posicion2 =="X" y posicion3 =="X" Entonces
+		//JUGADAS GANADORAS PC
+		Si posicion[1]=="X" y posicion[2] =="X" y posicion[3] =="X" Entonces
 			ganador = ganador + 1
 			ganadorreal = "Computadora"
 		Fin Si
 		
-		Escribir "Tu turno"
-		Leer turno
+		Si posicion[4]=="X" y posicion[5] =="X" y posicion[6] =="X" Entonces
+			ganador = ganador + 1
+			ganadorreal = "Computadora"
+		Fin Si
+		
+		Si posicion[7]=="X" y posicion[8] =="X" y posicion[9] =="X" Entonces
+			ganador = ganador + 1
+			ganadorreal = "Computadora"
+		Fin Si
+		
+		Si posicion[1]=="X" y posicion[5] =="X" y posicion[9] =="X" Entonces
+			ganador = ganador + 1
+			ganadorreal = "Computadora"
+		Fin Si
+		
+		Si posicion[7]=="X" y posicion[5] =="X" y posicion[3] =="X" Entonces
+			ganador = ganador + 1
+			ganadorreal = "Computadora"
+		Fin Si
+		
+		Si posicion[1]=="X" y posicion[4] =="X" y posicion[7] =="X" Entonces
+			ganador = ganador + 1
+			ganadorreal = "Computadora"
+		Fin Si
+		
+		Si posicion[2]=="X" y posicion[5] =="X" y posicion[8] =="X" Entonces
+			ganador = ganador + 1
+			ganadorreal = "Computadora"
+		Fin Si
+		
+		Si posicion[3]=="X" y posicion[6] =="X" y posicion[9] =="X" Entonces
+			ganador = ganador + 1
+			ganadorreal = "Computadora"
+		Fin Si
+		//TERMINE AQUI...
+		
+		Si ganador == 0 Entonces
+			Escribir "Tu turno"
+			Leer turno
+		SiNo
+			Escribir ""
+			Escribir "*************"
+			Escribir ""
+		Fin Si
+		
+		Si ganador == 0 Entonces
+			Mientras posicion(turno) == "X" o posicion(turno) == "O" Hacer
+				Escribir "Jugada invalida, Intenta denuevo."
+				Leer turno
+			Fin Mientras
+		Fin Si
 		
 		Si turno==1 Entonces
 			posicion[1]="O"
@@ -132,9 +222,8 @@ Algoritmo GATO
 		Fin Si
 		
 	Fin Mientras
-	
+	Fin Si
+	Si empieza <> 3
 	Escribir "El ganador es ", ganadorreal
-	
-	
-	
+	Fin si
 FinAlgoritmo
